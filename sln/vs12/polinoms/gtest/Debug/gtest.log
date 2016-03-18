@@ -1,0 +1,13 @@
+﻿Построение начато 19.03.2016 0:54:32.
+     1>Проект "C:\Users\Александр\Work\mp2\MyRepository\sln\vs12\polinoms\gtest\gtest.vcxproj" в узле 3 (целевые объекты Build).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\..\..\gtest /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt /D_VARIADIC_MAX=10 "..\..\..\..\gtest\gtest-all.cc"
+         gtest-all.cc
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\Александр\Work\mp2\MyRepository\sln\vs12\polinoms\Debug\gtest.lib" /NOLOGO "Debug\gtest-all.obj"
+         gtest.vcxproj -> C:\Users\Александр\Work\mp2\MyRepository\sln\vs12\polinoms\Debug\gtest.lib
+     1>Построение проекта "C:\Users\Александр\Work\mp2\MyRepository\sln\vs12\polinoms\gtest\gtest.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:10.26

@@ -140,7 +140,7 @@ void Polinom::AddMonom(double a, int N)
 		}
 		t=t->GetNext();
 	}
-	if (flag==true) t->SetCoeff(a+t->GetIndex());
+	if (flag==true) t->SetCoeff(a+t->GetCoeff());
 	else AddFirst(a,N);
 }
 

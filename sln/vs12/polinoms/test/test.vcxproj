@@ -85,6 +85,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\test\test_main.cpp" />
+    <ClCompile Include="..\..\..\..\test\test_monom.cpp" />
     <ClCompile Include="..\..\..\..\test\test_polinom.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

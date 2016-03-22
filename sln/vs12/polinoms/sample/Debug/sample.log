@@ -1,13 +1,13 @@
-﻿Построение начато 19.03.2016 0:54:38.
-     1>Проект "C:\Users\Александр\Work\mp2\MyRepository\sln\vs12\polinoms\sample\sample.vcxproj" в узле 2 (целевые объекты Build).
+﻿Построение начато 22.03.2016 15:21:37.
+     1>Проект "C:\Users\Александр\Work\mp2\mp2-lab4-polinoms\sln\vs12\polinoms\sample\sample.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\..\..\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt /D_VARIADIC_MAX=10 ..\..\..\..\samples\sample.cpp
          sample.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Александр\Work\mp2\MyRepository\sln\vs12\polinoms\Debug\sample.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\Debug polinoms.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Александр\Work\mp2\MyRepository\sln\vs12\polinoms\Debug\sample.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Александр\Work\mp2\MyRepository\sln\vs12\polinoms\Debug\sample.lib" /MACHINE:X86 Debug\sample.obj
-         sample.vcxproj -> C:\Users\Александр\Work\mp2\MyRepository\sln\vs12\polinoms\Debug\sample.exe
-     1>Построение проекта "C:\Users\Александр\Work\mp2\MyRepository\sln\vs12\polinoms\sample\sample.vcxproj" завершено (целевые объекты Build).
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Александр\Work\mp2\mp2-lab4-polinoms\sln\vs12\polinoms\Debug\sample.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\Debug polinoms.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Александр\Work\mp2\mp2-lab4-polinoms\sln\vs12\polinoms\Debug\sample.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Александр\Work\mp2\mp2-lab4-polinoms\sln\vs12\polinoms\Debug\sample.lib" /MACHINE:X86 Debug\sample.obj
+         sample.vcxproj -> C:\Users\Александр\Work\mp2\mp2-lab4-polinoms\sln\vs12\polinoms\Debug\sample.exe
+     1>Построение проекта "C:\Users\Александр\Work\mp2\mp2-lab4-polinoms\sln\vs12\polinoms\sample\sample.vcxproj" завершено (целевые объекты Build).
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:05.35
+Затраченное время: 00:00:03.52

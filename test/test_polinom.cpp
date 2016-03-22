@@ -2,7 +2,7 @@
 #include "monom.h"
 #include <gtest.h>
 
-TEST(Monom, test1)
+TEST(Polinom, test1)
 {
 	ADD_FAILURE ();
 }

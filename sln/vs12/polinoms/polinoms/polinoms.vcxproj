@@ -78,12 +78,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\include\list.h" />
     <ClInclude Include="..\..\..\..\include\monom.h" />
     <ClInclude Include="..\..\..\..\include\polinom.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\src\list.cpp" />
     <ClCompile Include="..\..\..\..\src\monom.cpp" />
     <ClCompile Include="..\..\..\..\src\polinom.cpp" />
   </ItemGroup>

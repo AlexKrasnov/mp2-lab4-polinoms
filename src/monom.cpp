@@ -1,29 +1,62 @@
 #include "monom.h"
 
-Monom::Monom(double a,int x,int y,int z)
+Monom::Monom()
 {
-	SetIndex(x,y,z);
-	coeff = a;
+	coeff = 1.0;
+	index = 0;
+	next=NULL;
 }
 
-Monom::Monom( Monom &m2)
+Monom::Monom(double a,int N,Monom *_next)
 {
-	coeff=m2.GetCoeff();
-	index=m2.GetIndex();
+	SetIndex(N);
+	coeff=a;
+	next=_next;
 }
 
-Monom::~Monom(){};
-
-void Monom::SetIndex(int x,int y,int z)
+Monom::Monom(Monom &l)
 {
-	if ((x>9)||(y>9)||(z>9)||(x<0)||(y<0)||(z<0))
-		throw "Wrong power";
-	else index=x*100+y*10+z;
+	coeff=l.coeff;
+	index=l.index;
+	next=l.next;
 }
 
-Monom& Monom::operator=( Monom &m2)
+void Monom::SetCoeff(double a)
 {
-	coeff=m2.GetCoeff();
-	index=m2.GetIndex();
+	coeff=a;
+}
+
+double Monom::GetCoeff()
+{
+	return coeff;
+}
+
+void Monom::SetIndex(int N)
+{
+	if ((N>=0) && (N<1000))
+	index=N;
+	else if (N<0) throw "Степень < 0 ";
+	else if (N>=1000) throw "Степень > 9 ";
+}
+
+int Monom::GetIndex()
+{
+	return index;
+}
+void Monom::SetNext(Monom *_next)
+{
+	next=_next;
+}
+
+Monom* Monom::GetNext()
+{
+	return next;
+}
+
+Monom& Monom::operator=(Monom &_l)
+{
+	coeff=_l.coeff;
+	index=_l.index;
+	next=_l.next;
 	return *this;
 }

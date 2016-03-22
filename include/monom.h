@@ -1,17 +1,20 @@
 #pragma once
+#include <iostream>
 
-class Monom 
+class Monom
 {
-protected:
-	double coeff;       // коэффициэнт перед мономом
-	int index;          // свёртка
 public:
-	Monom(double a=0,int x=0,int y=0,int z=0);
-	Monom( Monom &m2);
-	~Monom();
-	double GetCoeff(){return coeff;};
-	void SetCoeff(double a){coeff=a;};
-	int GetIndex(){return index;};
-	void SetIndex(int x,int y,int z);
-	Monom& operator=(Monom &m2); 
-}; 
+	double coeff;
+	int index;
+	Monom *next;
+	Monom();
+	Monom(Monom &l);
+	Monom(double a,int N,Monom *_next);
+	void SetCoeff(double a);
+    double GetCoeff();
+	void SetIndex(int N);
+    int GetIndex();
+	void SetNext(Monom *_next);
+	Monom* GetNext();
+	Monom& operator=(Monom &_l);
+};

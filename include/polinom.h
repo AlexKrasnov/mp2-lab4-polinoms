@@ -13,10 +13,6 @@ public:
 	~Polinom();
 	void Clean();
 	void Sort();
-	void Input();
-	void Print();
-	void AddFirst(double a, int N);
-	void AddLast(double a, int N);
 	void AddMonom(double a, int N); 
 	Polinom operator*(double a);
 	Polinom operator+(Polinom &p);
@@ -48,7 +44,7 @@ public:
 		}
 		return in;
 	}
-	friend ostream & operator<<( ostream &out, const Polinom &p)
+	friend ostream & operator<<(ostream &out, const Polinom &p)
 	{
 		Monom *t = p.head;
 		while (t->GetNext()!=NULL)
@@ -65,7 +61,8 @@ public:
 				t=t->GetNext();
 			}
 		}
-		out<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10<<endl;
+		if (t->GetIndex()==0) out<<t->GetCoeff();
+		else out<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10<<endl;
 		return out;
 	}
 };

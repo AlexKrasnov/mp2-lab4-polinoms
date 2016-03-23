@@ -1,12 +1,5 @@
 #include "monom.h"
 
-Monom::Monom()
-{
-	coeff = 1.0;
-	index = 0;
-	next=NULL;
-}
-
 Monom::Monom(double a,int N,Monom *_next)
 {
 	SetIndex(N);
@@ -57,6 +50,6 @@ Monom& Monom::operator=(Monom &_l)
 {
 	coeff=_l.coeff;
 	index=_l.index;
-	next=_l.next;
+	(*this).next=_l.next;
 	return *this;
 }

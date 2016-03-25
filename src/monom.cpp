@@ -1,4 +1,4 @@
-#include "monom.h"
+﻿#include "monom.h"
 
 Monom::Monom(double a,int N,Monom *_next)
 {
@@ -50,12 +50,12 @@ Monom& Monom::operator=(const Monom &m)
 {
 	coeff=m.coeff;
 	index=m.index;
-	(*this).next=m.next;
+	next=m.next;
 	return *this;
 }
 
 
 bool Monom::operator==(const Monom &m) const 
 {
-	return ((coeff==m.coeff)&&(index==m.index));
+	return ((coeff==m.coeff)&&(index==m.index)&&(next==m.next));
 }

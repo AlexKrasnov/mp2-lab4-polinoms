@@ -9,16 +9,18 @@ class Polinom : public Monom
 public:
 	Monom *head;
 	Polinom();
-	Polinom(Polinom &p);
+	Polinom(const Polinom &p);
 	~Polinom();
 	void Clean();
 	void Sort();
 	void AddMonom(double a, int N); 
-	Polinom operator*(double a);
-	Polinom operator+(Polinom &p);
-	Polinom operator-(Polinom &p);
-	Polinom operator*(Polinom &p);
-	Polinom& operator=(Polinom &p);
+	void AddMonom2(double a, int N); 
+	Polinom operator*(double a) const;
+	Polinom operator+(const Polinom &p) const;
+	Polinom operator-(const Polinom &p) const;
+	Polinom operator*(const Polinom &p) const;
+	Polinom& operator=(const Polinom &p);
+	bool operator==(const Polinom &p) const;
 	Monom* GetHead();
 	friend istream& operator>>(istream &in, Polinom &p)
 	{
@@ -28,15 +30,15 @@ public:
 		while (1)
 		{
 			setlocale(LC_ALL, "Russian");
-			cout << "Ââåäèòå êîýôôèöèåíò: ";
+			cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚: ";
 			in>>k;
-			cout << "Ââåäèòå ñòåïåíè x,y,z: "<<endl;
+			cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚ÐµÐ¿ÐµÐ½Ð¸ x,y,z: "<<endl;
 			in>>s1;
 			in>>s2;
 			in>>s3;
 			int N=s1*100+s2*10+s3;
 			p.AddMonom(k,N);
-			cout << endl << "Ïðîäîëæèòü ââîä ìîíîìîâ? 1-äà, 0-íåò"<<endl;
+			cout << endl << "ÐŸÑ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ Ð²Ð²Ð¾Ð´ Ð¼Ð¾Ð½Ð¾Ð¼Ð¾Ð²? 1-Ð´Ð°, 0-Ð½ÐµÑ‚"<<endl;
 			in>>f;
 			cout<<endl;
 			if (f==0) break;

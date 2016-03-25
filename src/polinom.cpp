@@ -7,7 +7,7 @@ Polinom::Polinom()
 	head=NULL;
 }
 
-Polinom:: Polinom(Polinom &p)
+Polinom:: Polinom(const Polinom &p)
 {
 	head=new Monom;
 	Monom *l1=p.head;
@@ -19,8 +19,8 @@ Polinom:: Polinom(Polinom &p)
 		Monom *l=new Monom;
 		l2->SetCoeff(l1->GetCoeff());
 		l2->SetIndex(l1->GetIndex());
-		//l2->SetNext(l1->GetNext());
-		(*l2).next=&*l1->next;
+		l2->SetNext(l1->GetNext());
+		//(*l2).next=&*l1->next;
 		l1=l1->GetNext();
 		l2=l2->GetNext();
 	}
@@ -43,7 +43,7 @@ void Polinom::Clean()
 	{
 		head=head->GetNext();
 		delete t;
-		t=this->GetHead();
+		t=head;
 	}
 }
 
@@ -58,83 +58,13 @@ void Polinom:: Sort()
 			}
 }
 
-/*
-void Polinom::Input()
-{
-double k;
-int s1,s2,s3;
-int f;
-while (1)
-{
-setlocale(LC_ALL, "Russian");
-cout << "Введите коэффициент: ";
-cin>>k;
-cout << "Введите степени x,y,z: "<<endl;
-cin>>s1;
-cin>>s2;
-cin>>s3;
-int N=s1*100+s2*10+s3;
-AddMonom(k,N);
-cout << endl << "Продолжить ввод мономов? 1-да, 0-нет"<<endl;
-cin>>f;
-cout<<endl;
-if (f==0) break;
-else if (f==1) continue;
-}
-}
-
-void Polinom::Print()
-{
-Sort();
-Monom *t = head;
-while (t->GetNext()!=NULL)
-{
-if (t->GetCoeff()==0.0) t=t->GetNext();
-else if (t->GetIndex()==0) 
-{
-cout<<t->GetCoeff()<<" + ";
-t=t->GetNext();
-}
-else
-{
-cout<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10<<" + ";
-t=t->GetNext();
-}
-}
-cout<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10<<endl;
-}
-
-void Polinom::AddFirst(double a, int N)
-{
-Monom *t=new Monom;
-t->SetCoeff(a);
-t->SetIndex(N);
-t->SetNext(head);
-head=t;
-}
-
-void Polinom::AddLast(double a, int N)
-{
-Monom *t=new Monom;
-t->SetIndex(N);
-t->SetCoeff(a);
-if (head==NULL) head=t;
-else
-{
-Monom *current=head;
-while (current->GetNext()!=NULL) current=current->GetNext();
-current->SetNext(t);
-}	
-}
-*/
-
 void Polinom::AddMonom(double a, int N)
 {
 	bool flag = false;
+	if (a==0) return;
 	Monom *t=head;
 	while (t!=NULL)
 	{
-		if (a==0) break;
 		if (t->GetIndex()==N)
 		{
 			flag = true;
@@ -142,20 +72,7 @@ void Polinom::AddMonom(double a, int N)
 		}
 		t=t->GetNext();
 	}
-	if (flag==true)
-	{
-		/*if ((a+t->GetCoeff())!=0)*/ t->SetCoeff(a+t->GetCoeff());
-		/*
-		else 
-		{
-			Monom *m=head;
-			while(m->GetNext()!=t)
-				m=m->GetNext();
-            Monom *m1=m->GetNext();
-			m=m1->GetNext();
-			delete m1;
-		}*/
-	}
+	if (flag==true) t->SetCoeff(a+t->GetCoeff());
 	else 
 	{
 		Monom *p=new Monom;
@@ -166,21 +83,84 @@ void Polinom::AddMonom(double a, int N)
 	}
 }
 
-Polinom Polinom:: operator*(double a)
+void Polinom::AddMonom2(double a, int N)
 {
-	Polinom res=*this;
-	Monom *t = res.GetHead();
+	Monom *cur;
+	Monom *t = new Monom;
+	t->SetIndex(N);
+	t->SetCoeff(a);
+	t->SetNext(NULL);
+	if (a==0) 
+	{
+		delete t;
+		return;
+	}
+	if (head==NULL)
+	{
+		head = t;
+		return;
+	}
+	if (t->GetIndex()<head->GetIndex())
+	{
+		t->SetNext(head);
+		head=t;
+		return;
+	}
+	if (t->GetIndex()==head->GetIndex())
+	{
+		head->coeff+=t->coeff;
+		delete t;
+	}
+	if (head->coeff==0)
+	{
+		t=head;
+		head=head->next;
+		delete t;
+		return;
+	}
+	cur = head;
+	while (cur->next!=NULL)
+	{
+		if (t->index>=cur->index) break;
+	}
+	if (cur->next==NULL)
+	{
+		cur->next=t;
+		return;
+	}
+	if (cur->next->index==t->index)
+	{
+		cur->next->index=t->index;
+		delete t;
+		if (cur->next->index==0)
+		{
+			t=cur->next;
+			cur->next=t->next;
+			delete t;
+		}
+		return;
+	}
+	t->next=cur->next;
+	cur->next=t;
+}
+
+Polinom Polinom:: operator*(double a) const
+{
+	Polinom res;
+	Polinom q(*this);
+	Monom *t=q.GetHead();
+	if (a==0) return res;
 	while (t!=NULL)
 	{
-		t->coeff*=a;
+		res.AddMonom(a*(t->GetCoeff()),t->GetIndex());
 		t=t->GetNext();
 	}
 	return res;
 }
 
-Polinom Polinom:: operator+(Polinom &p)
+Polinom Polinom:: operator+(const Polinom &p) const
 {
-	Polinom res=*this;
+	Polinom res(*this);
 	Monom *t=p.head;
 	while (t!=NULL)
 	{
@@ -190,9 +170,9 @@ Polinom Polinom:: operator+(Polinom &p)
 	return res;
 }
 
-Polinom Polinom:: operator-(Polinom &p)
+Polinom Polinom:: operator-(const Polinom &p) const
 {
-	Polinom res=*this;
+	Polinom res(*this);
 	Monom *t=p.head;
 	while (t!=NULL)
 	{
@@ -202,21 +182,21 @@ Polinom Polinom:: operator-(Polinom &p)
 	return res;
 }
 
-Polinom Polinom::operator*(Polinom &p)
+Polinom Polinom::operator*(const Polinom &p) const
 {
 	Polinom res;
-	Monom *t1 = new Monom;
-	t1=p.GetHead();
+	Polinom q(*this);
+	Monom *t1 = p.head;
 	while (t1!= NULL)
 	{
-		for (Monom *t2=(*this).GetHead();t2!=NULL;t2=t2->GetNext())
+		for (Monom *t2=q.GetHead();t2!=NULL;t2=t2->GetNext())
 		{
 			int s1(0),s2(0),s3(0);
 			s1=(t1->GetIndex())%10 + (t2->GetIndex())%10;
 			s2=((t1->GetIndex())/10)%10 + ((t2->GetIndex())/10)%10;
 			s3=(t1->GetIndex())/100 + (t2->GetIndex())/100;
 			if (s1>9||s2>9||s3>9)
-				throw ("Одна из степеней итогового полинома > 9");
+				throw ("РћРґРЅР° РёР· СЃС‚РµРїРµРЅРµР№ РёС‚РѕРіРѕРІРѕРіРѕ РїРѕР»РёРЅРѕРјР° > 9");
 			else res.AddMonom(t1->GetCoeff() * t2->GetCoeff(), t1->GetIndex() + t2->GetIndex());
 		}
 		t1 = t1->GetNext();
@@ -224,11 +204,11 @@ Polinom Polinom::operator*(Polinom &p)
 	return res;
 }
 
-Polinom& Polinom:: operator=(Polinom &p)
+Polinom& Polinom:: operator=(const Polinom &p)
 {
 	this->Clean();
-	head=p.GetHead();
-	Monom *l1=p.GetHead();
+	head=p.head;
+	Monom *l1=p.head;
 	Monom *l2=(*this).GetHead();
 	l2->SetCoeff(l1->GetCoeff());
 	l2->SetIndex(l1->GetIndex());
@@ -241,6 +221,30 @@ Polinom& Polinom:: operator=(Polinom &p)
 		l1=l1->GetNext();
 		l2=l2->GetNext();
 	}
+	return *this;
+}
 
-return *this;
+bool Polinom:: operator==(const Polinom &p) const
+{
+	Polinom q(p);
+	if (head==NULL)
+	{
+		if (q.head==NULL) return true;
+		else return false;
+	}
+	Monom *t1=head;
+	Monom *t2=q.head;
+	int flag(1);
+	while (t1!=NULL)
+	{
+		if (!((t1->GetCoeff()==t2->GetCoeff())&&(t1->GetIndex()==t2->GetIndex())))
+		{
+			flag=0;
+			break;
+		}
+		t1=t1->GetNext();
+		t2=t2->GetNext();
+	}
+	if (flag==1) return true;
+	else return false;
 }

@@ -28,8 +28,8 @@ void Monom::SetIndex(int N)
 {
 	if ((N>=0) && (N<1000))
 	index=N;
-	else if (N<0) throw "Степень < 0 ";
-	else if (N>=1000) throw "Степень > 9 ";
+	else if (N<0) throw "РЎС‚РµРїРµРЅСЊ < 0 ";
+	else if (N>=1000) throw "РЎС‚РµРїРµРЅСЊ > 9 ";
 }
 
 int Monom::GetIndex()

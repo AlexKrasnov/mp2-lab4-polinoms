@@ -8,12 +8,13 @@ public:
 	int index;
 	Monom *next;
     Monom(double = 0.0,int N = 0, Monom *_next = NULL);
-	Monom(Monom &l);
+	Monom(Monom &m);
 	void SetCoeff(double a);
     double GetCoeff();
 	void SetIndex(int N);
     int GetIndex();
 	void SetNext(Monom *_next);
 	Monom* GetNext();
-	Monom& operator=(Monom &_l);
+	Monom& operator=(const Monom &m);
+	bool operator==(const Monom &m) const;
 };

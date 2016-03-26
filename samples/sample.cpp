@@ -14,11 +14,9 @@ void main()
 		cout << "Введите полином p1" <<endl;
 		Polinom p1;
 		cin>>p1;
-		p1.Sort();
 		cout << "Введите полином p2" <<endl;
 		Polinom p2;
 		cin>>p2;
-		p2.Sort();
 		cout<<"Выберите операцию:"<<endl;
 		cout<<"1. p1 + p2"<<endl;
 		cout<<"2. p1 - p2"<<endl;
@@ -36,22 +34,22 @@ void main()
 			{
 			case 1: 
 				{
-					cout << "Резултат операции: "<<p1+p2<<endl;
+					cout << "Результат операции: "<<p1+p2<<endl;
 					break;
 				}
 			case 2: 
 				{
-					cout << "Резултат операции: "<<p1-p2<<endl;
+					cout << "Результат операции: "<<p1-p2<<endl;
 					break;
 				}
 			case 3: 
 				{
-					cout << "Резултат операции: "<<p2-p1<<endl;
+					cout << "Результат операции: "<<p2-p1<<endl;
 					break;
 				}
 			case 4: 
 				{
-					cout << "Резултат операции: "<<p1*p2<<endl;
+					cout << "Результат операции: "<<p1*p2<<endl;
 					break;
 				}
 			case 5:
@@ -59,7 +57,7 @@ void main()
 					int k(0);
 					cout << "Введите константу:"<<endl;
 					cin>>k;
-					cout << "Резултат операции: "<<p1*k<<endl;
+					cout << "Результат операции: "<<p1*k<<endl;
 					break;
 				}	
 			case 6:
@@ -67,7 +65,7 @@ void main()
 					int k(0);
 					cout << "Введите константу:"<<endl;
 					cin>>k;
-					cout << "Резултат операции: "<<p2*k<<endl;
+					cout << "Результат операции: "<<p2*k<<endl;
 					break;
 				}	
 			default: 

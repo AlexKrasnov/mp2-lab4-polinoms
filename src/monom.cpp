@@ -3,15 +3,15 @@
 Monom::Monom(double a,int N,Monom *_next)
 {
 	SetIndex(N);
-	coeff=a;
-	next=_next;
+	SetCoeff(a);
+	SetNext(_next);
 }
 
-Monom::Monom(Monom &m)
+Monom::Monom(const Monom &m)
 {
-	coeff=m.coeff;
-	index=m.index;
-	next=m.next;
+	SetIndex(m.index);
+	SetCoeff(m.coeff);
+	SetNext(m.next);
 }
 
 void Monom::SetCoeff(double a)
@@ -48,14 +48,15 @@ Monom* Monom::GetNext()
 
 Monom& Monom::operator=(const Monom &m)
 {
-	coeff=m.coeff;
-	index=m.index;
-	next=m.next;
+	SetCoeff(m.coeff);
+	SetIndex(m.index);
+	//SetNext(m.next);
 	return *this;
 }
 
 
 bool Monom::operator==(const Monom &m) const 
 {
-	return ((coeff==m.coeff)&&(index==m.index)&&(next==m.next));
+	if ((coeff==m.coeff)&&(index==m.index)) return true;
+	else return false;
 }

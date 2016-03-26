@@ -8,7 +8,7 @@ public:
 	int index;
 	Monom *next;
     Monom(double = 0.0,int N = 0, Monom *_next = NULL);
-	Monom(Monom &m);
+	Monom(const Monom &m);
 	void SetCoeff(double a);
     double GetCoeff();
 	void SetIndex(int N);

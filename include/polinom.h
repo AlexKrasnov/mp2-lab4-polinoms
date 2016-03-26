@@ -9,14 +9,15 @@ class Polinom : public Monom
 public:
 	Monom *head;
 	Polinom();
+	~Polinom();
 	Polinom(const Polinom &p);
 	void Clean();
 	void Sort();
 	void AddMonom(double a, int N); 
-	Polinom operator*(double a) const;
-	Polinom operator+(const Polinom &p) const;
-	Polinom operator-(const Polinom &p) const;
-	Polinom operator*(const Polinom &p) const;
+	Polinom& operator*(double a) const;
+	Polinom& operator+(const Polinom &p) const;
+	Polinom& operator-(const Polinom &p) const;
+	Polinom& operator*(const Polinom &p) const;
 	Polinom& operator=(const Polinom &p);
 	bool operator==(const Polinom &p) const;
 	Monom* GetHead();
@@ -51,22 +52,40 @@ public:
 		Polinom q(p);
 		q.Sort();
 		Monom *t = q.head;
+		if (t==NULL)
+		{
+			out<<t->GetCoeff();
+			return out;
+		}
+		if (t->GetNext()==NULL)
+		{
+			if (t->GetCoeff()==0)
+			{
+				out<<t->GetCoeff();
+				return out;
+			}
+			else if (t->GetIndex()==0) out<<t->GetCoeff();
+			else out<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10<<endl;
+			return out;
+		}
 		while (t->GetNext()!=NULL)
 		{
 			if (t->GetCoeff()==0.0) t=t->GetNext();
 			else if (t->GetIndex()==0) 
 			{
-				out<<t->GetCoeff()<<" + ";
+				out<<t->GetCoeff();
 				t=t->GetNext();
 			}
 			else
 			{
-				out<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10<<" + ";
+				out<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10;
 				t=t->GetNext();
 			}
+			if (t->GetNext()!=NULL) out<<" + ";
 		}
-		if (t->GetIndex()==0) out<<t->GetCoeff();
-		else out<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10<<endl;
+		if (t->GetCoeff()==0) return out;
+		else if (t->GetIndex()==0) out<<" + "<<t->GetCoeff();
+		else out<<" + "<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10<<endl;
 		return out;
 	}
 };

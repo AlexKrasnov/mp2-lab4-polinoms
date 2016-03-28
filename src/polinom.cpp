@@ -14,29 +14,6 @@ Polinom::~Polinom()
 
 Polinom:: Polinom(const Polinom &p)
 {
-	/*
-	head=new Monom;
-	if (p.head==NULL) 
-	{
-		head=NULL;
-		return;
-	}
-	Monom *l1=p.head;
-	Monom *l2=head;
-	l2->SetCoeff(head->GetCoeff());
-	l2->SetIndex(head->GetIndex());
-	while (l1!=NULL)
-	{
-		Monom *l=new Monom;
-		l2->SetCoeff(l1->GetCoeff());
-		l2->SetIndex(l1->GetIndex());
-		l2->SetNext(l1->GetNext());
-		//(*l2).next=&*l1->next;
-		l1=l1->GetNext();
-		l2=l2->GetNext();
-	}
-	*/
-
 	head = new Monom; 
 	head->SetNext(NULL);
 	Monom *cur = new Monom;
@@ -144,14 +121,58 @@ Polinom& Polinom::operator*(const Polinom &p) const
 		for (Monom *t2=q.GetHead();t2!=NULL;t2=t2->GetNext())
 		{
 			int s1(0),s2(0),s3(0);
-			s1=(t1->GetIndex())%10 + (t2->GetIndex())%10;
-			s2=((t1->GetIndex())/10)%10 + ((t2->GetIndex())/10)%10;
-			s3=(t1->GetIndex())/100 + (t2->GetIndex())/100;
-			if (s1>9||s2>9||s3>9)
-				throw ("Одна из степеней итогового полинома > 9");
+			s1=(t1->GetIndex())%20 + (t2->GetIndex())%20;
+			s2=((t1->GetIndex())/20)%20 + ((t2->GetIndex())/20)%20;
+			s3=(t1->GetIndex())/400 + (t2->GetIndex())/400;
+			if (s1>19||s2>19||s3>19)
+				throw ("Одна из степеней итогового полинома >= 20");
 			else (*res).AddMonom(t1->GetCoeff() * t2->GetCoeff(), t1->GetIndex() + t2->GetIndex());
 		}
 		return *res;
+}
+
+Polinom Polinom::Add(Polinom *p,Polinom *q)
+{
+	Polinom *res = new Polinom(*p);
+	Monom *t=q->head;
+	while (t!=NULL)
+	{
+		(*res).AddMonom(t->GetCoeff(),t->GetIndex());
+		t=t->GetNext();
+	}
+	*this=*res;
+	return *this;
+}
+
+Polinom Polinom::Subtract(Polinom *p,Polinom *q)
+{
+	Polinom *res = new Polinom(*p);
+	Monom *t=q->head;
+	while (t!=NULL)
+	{
+		(*res).AddMonom(-t->GetCoeff(),t->GetIndex());
+		t=t->GetNext();
+	}
+	*this=*res;
+	return *this;
+}
+
+Polinom Polinom::Multiply(Polinom *p,Polinom *q)
+{
+	Polinom *res = new Polinom;
+	for (Monom *t1=q->head;t1!=NULL;t1=t1->GetNext())
+		for (Monom *t2=p->head;t2!=NULL;t2=t2->GetNext())
+		{
+			int s1(0),s2(0),s3(0);
+			s1=(t1->GetIndex())%20 + (t2->GetIndex())%20;
+			s2=((t1->GetIndex())/20)%20 + ((t2->GetIndex())/20)%20;
+			s3=(t1->GetIndex())/400 + (t2->GetIndex())/400;
+			if (s1>19||s2>19||s3>19)
+				throw ("Одна из степеней итогового полинома >= 20");
+			else (*res).AddMonom(t1->GetCoeff() * t2->GetCoeff(), t1->GetIndex() + t2->GetIndex());
+		}
+		*this = *res;
+		return *this;
 }
 
 Polinom& Polinom:: operator=(const Polinom &p)

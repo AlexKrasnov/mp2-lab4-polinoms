@@ -26,10 +26,9 @@ double Monom::GetCoeff()
 
 void Monom::SetIndex(int N)
 {
-	if ((N>=0) && (N<1000))
-	index=N;
+	if ((N>=0) && (N<8000)) index=N;
 	else if (N<0) throw "Степень < 0 ";
-	else if (N>=1000) throw "Степень > 9 ";
+	else if (N>=8000) throw "Степень >= 20 ";
 }
 
 int Monom::GetIndex()
@@ -50,7 +49,6 @@ Monom& Monom::operator=(const Monom &m)
 {
 	SetCoeff(m.coeff);
 	SetIndex(m.index);
-	//SetNext(m.next);
 	return *this;
 }
 

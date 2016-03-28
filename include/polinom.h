@@ -21,6 +21,9 @@ public:
 	Polinom& operator=(const Polinom &p);
 	bool operator==(const Polinom &p) const;
 	Monom* GetHead();
+	Polinom Add(Polinom *p,Polinom *q);
+	Polinom Subtract(Polinom *p,Polinom *q);
+	Polinom Multiply(Polinom *p,Polinom *q);
 	friend istream& operator>>(istream &in, Polinom &p)
 	{
 		double k;
@@ -36,8 +39,8 @@ public:
 			in>>s2;
 			in>>s3;
 			if (s1<0||s2<0||s3<0) throw "Степень < 0 ";
-			if (s1>9||s2>9||s3>9) throw "Степень > 9 ";
-			int N=s1*100+s2*10+s3;
+			if (s1>20||s2>20||s3>20) throw "Степень >= 20 ";
+			int N=s1*400+s2*20+s3;
 			p.AddMonom(k,N);
 			cout << endl << "Продолжить ввод мономов? 1-да, 0-нет"<<endl;
 			in>>f;
@@ -65,7 +68,7 @@ public:
 				return out;
 			}
 			else if (t->GetIndex()==0) out<<t->GetCoeff();
-			else out<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10<<endl;
+			else out<<t->GetCoeff()<<"x^"<<t->GetIndex()/400<<"y^"<<(t->GetIndex()/20)%20<<"z^"<<t->GetIndex()%20<<endl;
 			return out;
 		}
 		while (t->GetNext()!=NULL)
@@ -78,14 +81,14 @@ public:
 			}
 			else
 			{
-				out<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10;
+				out<<t->GetCoeff()<<"x^"<<t->GetIndex()/400<<"y^"<<(t->GetIndex()/20)%20<<"z^"<<t->GetIndex()%20;
 				t=t->GetNext();
 			}
 			if (t->GetNext()!=NULL) out<<" + ";
 		}
 		if (t->GetCoeff()==0) return out;
 		else if (t->GetIndex()==0) out<<" + "<<t->GetCoeff();
-		else out<<" + "<<t->GetCoeff()<<"x^"<<t->GetIndex()/100<<"y^"<<(t->GetIndex()/10)%10<<"z^"<<t->GetIndex()%10<<endl;
+		else out<<" + "<<t->GetCoeff()<<"x^"<<t->GetIndex()/400<<"y^"<<(t->GetIndex()/20)%20<<"z^"<<t->GetIndex()%20<<endl;
 		return out;
 	}
 };

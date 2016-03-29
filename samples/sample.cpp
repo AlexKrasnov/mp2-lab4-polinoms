@@ -1,4 +1,5 @@
 ﻿#include "polinom.h"
+//#include "conio.h"
 
 void main()
 {
@@ -18,6 +19,10 @@ void main()
 		cout << "Введите полином p2" <<endl;
 		Polinom p2;
 		cin>>p2;
+		system("cls");
+		cout << "\t\t***ЛР 4. Арифметические операции с полиномами***\n\n";
+		cout << "Исходный полином p1: "<<endl<<p1<<endl;
+		cout << "Исходный полином p2: "<<endl<<p2<<endl<<endl;
 		cout<<"Выберите операцию:"<<endl;
 		cout<<"1. p1 + p2"<<endl;
 		cout<<"2. p1 - p2"<<endl;

@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "polinom.h"
 #include <iostream>
 #include <sstream>
@@ -21,12 +21,12 @@ namespace WinForm
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			//TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 			//
 		}
 	protected:
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		/// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
 		/// </summary>
 		~MyForm()
 		{
@@ -84,14 +84,14 @@ namespace WinForm
 
 	private:
 		/// <summary>
-		/// Требуется переменная конструктора.
+		/// РўСЂРµР±СѓРµС‚СЃСЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Обязательный метод для поддержки конструктора - не изменяйте
-		/// содержимое данного метода при помощи редактора кода.
+		/// РћР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° - РЅРµ РёР·РјРµРЅСЏР№С‚Рµ
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ РґР°РЅРЅРѕРіРѕ РјРµС‚РѕРґР° РїСЂРё РїРѕРјРѕС‰Рё СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -284,7 +284,7 @@ namespace WinForm
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(71, 13);
 			this->label7->TabIndex = 23;
-			this->label7->Text = L"Полином p1:";
+			this->label7->Text = L"РџРѕР»РёРЅРѕРј p1:";
 			// 
 			// label8
 			// 
@@ -293,7 +293,7 @@ namespace WinForm
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(71, 13);
 			this->label8->TabIndex = 24;
-			this->label8->Text = L"Полином p2:";
+			this->label8->Text = L"РџРѕР»РёРЅРѕРј p2:";
 			// 
 			// button3
 			// 
@@ -302,7 +302,7 @@ namespace WinForm
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 52);
 			this->button3->TabIndex = 25;
-			this->button3->Text = L"Добавить моном";
+			this->button3->Text = L"Р”РѕР±Р°РІРёС‚СЊ РјРѕРЅРѕРј";
 			this->button3->UseVisualStyleBackColor = false;
 			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
@@ -313,7 +313,7 @@ namespace WinForm
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 52);
 			this->button4->TabIndex = 26;
-			this->button4->Text = L"Добавить моном";
+			this->button4->Text = L"Р”РѕР±Р°РІРёС‚СЊ РјРѕРЅРѕРј";
 			this->button4->UseVisualStyleBackColor = false;
 			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
 			// 
@@ -378,7 +378,7 @@ namespace WinForm
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(113, 13);
 			this->label9->TabIndex = 34;
-			this->label9->Text = L"Результат операции:";
+			this->label9->Text = L"Р РµР·СѓР»СЊС‚Р°С‚ РѕРїРµСЂР°С†РёРё:";
 			this->label9->Click += gcnew System::EventHandler(this, &MyForm::label9_Click);
 			// 
 			// label11
@@ -388,7 +388,7 @@ namespace WinForm
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(93, 13);
 			this->label11->TabIndex = 36;
-			this->label11->Text = L"Введите данные:";
+			this->label11->Text = L"Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ:";
 			// 
 			// label12
 			// 
@@ -397,7 +397,7 @@ namespace WinForm
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(93, 13);
 			this->label12->TabIndex = 37;
-			this->label12->Text = L"Введите данные:";
+			this->label12->Text = L"Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ:";
 			// 
 			// button2
 			// 
@@ -406,7 +406,7 @@ namespace WinForm
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(147, 52);
 			this->button2->TabIndex = 38;
-			this->button2->Text = L"ввести полином p1 заново";
+			this->button2->Text = L"РІРІРµСЃС‚Рё РїРѕР»РёРЅРѕРј p1 Р·Р°РЅРѕРІРѕ";
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
@@ -417,7 +417,7 @@ namespace WinForm
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(147, 52);
 			this->button9->TabIndex = 39;
-			this->button9->Text = L"ввести полином p2 заново";
+			this->button9->Text = L"РІРІРµСЃС‚Рё РїРѕР»РёРЅРѕРј p2 Р·Р°РЅРѕРІРѕ";
 			this->button9->UseVisualStyleBackColor = false;
 			this->button9->Click += gcnew System::EventHandler(this, &MyForm::button9_Click);
 			// 
@@ -460,7 +460,7 @@ namespace WinForm
 			this->Controls->Add(this->button1);
 			this->ForeColor = System::Drawing::SystemColors::ControlText;
 			this->Name = L"MyForm";
-			this->Text = L"Арифметические операции с полиномами";
+			this->Text = L"РђСЂРёС„РјРµС‚РёС‡РµСЃРєРёРµ РѕРїРµСЂР°С†РёРё СЃ РїРѕР»РёРЅРѕРјР°РјРё";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -476,7 +476,7 @@ namespace WinForm
 		int *a2;
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 this->Text = "Калькулятор";
+				 this->Text = "РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ";
 				 // label1->Text = "";
 				 button1->Text = "EXIT";
 				 p = new Polinom;
@@ -516,8 +516,8 @@ namespace WinForm
 						 System::Globalization::NumberStyles::Number,
 						 System::Globalization::NumberFormatInfo::CurrentInfo, d);
 					 s1=b; s2=c; s3=d;
-					 if (s1<0||s2<0||s3<0) throw "Степень < 0 ";
-					 if (s1>19||s2>19||s3>19) throw "Степень >= 20 ";
+					 if (s1<0||s2<0||s3<0) throw "РЎС‚РµРїРµРЅСЊ < 0 ";
+					 if (s1>19||s2>19||s3>19) throw "РЎС‚РµРїРµРЅСЊ >= 20 ";
 					 int N=s1*400+s2*20+s3;
 					 p->AddMonom(a,N);
 					 Monom *t=p->head;
@@ -551,7 +551,7 @@ namespace WinForm
 				 }
 				 catch(const char* error)
 				 {
-					 textBox10->Text="Неправильный ввод! Степени должны быть в промежутке [0,19]";
+					 textBox10->Text="РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РІРІРѕРґ! РЎС‚РµРїРµРЅРё РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РїСЂРѕРјРµР¶СѓС‚РєРµ [0,19]";
 				 }
 			 }
 	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) 
@@ -572,8 +572,8 @@ namespace WinForm
 						 System::Globalization::NumberStyles::Number,
 						 System::Globalization::NumberFormatInfo::CurrentInfo, d);
 					 s1=b; s2=c; s3=d;
-					 if (s1<0||s2<0||s3<0) throw "Степень < 0 ";
-					 if (s1>19||s2>19||s3>19) throw "Степень >= 20 ";
+					 if (s1<0||s2<0||s3<0) throw "РЎС‚РµРїРµРЅСЊ < 0 ";
+					 if (s1>19||s2>19||s3>19) throw "РЎС‚РµРїРµРЅСЊ >= 20 ";
 					 int N=s1*400+s2*20+s3;
 					 q->AddMonom(a,N);
 					 Monom *t=q->head;
@@ -607,7 +607,7 @@ namespace WinForm
 				 }
 				 catch(const char* error)
 				 {
-					 textBox12->Text="Неправильный ввод! Степени должны быть в промежутке [0,19]";
+					 textBox12->Text="РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РІРІРѕРґ! РЎС‚РµРїРµРЅРё РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РїСЂРѕРјРµР¶СѓС‚РєРµ [0,19]";
 				 }
 			 }
 	private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -772,7 +772,7 @@ namespace WinForm
 				 }
 				 catch(const char* error)
 				 {
-					 textBox13->Text="Степень итогового многочлена >= 20";
+					 textBox13->Text="РЎС‚РµРїРµРЅСЊ РёС‚РѕРіРѕРІРѕРіРѕ РјРЅРѕРіРѕС‡Р»РµРЅР° >= 20";
 				 }
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) 

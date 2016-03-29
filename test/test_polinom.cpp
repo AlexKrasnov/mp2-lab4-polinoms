@@ -291,12 +291,3 @@ TEST(Polinoms, can_multiply)
 	res->AddMonom(50,1263);
 	EXPECT_EQ(*q,*res);
 }
-
-TEST(Polinoms, my_test)
-{
-	Polinom p;
-	p.AddMonom(-2,0);
-	p.AddMonom(2,0);
-	Polinom q;
-	EXPECT_EQ(p,q);
-}

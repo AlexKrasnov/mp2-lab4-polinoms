@@ -27,3 +27,12 @@
 *.out
 *.app
 
+# Other
+*.sdf
+*.opensdf
+*.pdb
+*.ilk
+*.exe
+*.log
+*.tlog
+*.idb

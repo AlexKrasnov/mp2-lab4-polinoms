@@ -11,16 +11,6 @@ void main()
 	setlocale(LC_ALL, "Russian");
 	try
 	{
-		//Polinom *r = new Polinom;
-		//r->AddMonom(2,0);
-		//r->AddMonom(4,421);
-		//cout << (*r);
-		//Polinom *a = new Polinom;
-		//a->AddMonom(3,421);
-		//Polinom *b = new Polinom;
-		//b->AddMonom(6,421);
-		//Polinom c = (*a)*(*b);
-		//cout << c;
 		cout << "\t\t***ЛР 4. Арифметические операции с полиномами***\n\n";
 		cout << "Правила ввода:"<< endl;
 		cout << "1) Вводимый полином состоит из мономов от 3-х переменных" << endl

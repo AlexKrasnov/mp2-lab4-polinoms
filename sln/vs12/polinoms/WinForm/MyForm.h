@@ -468,86 +468,43 @@ namespace WinForm
 		}
 #pragma endregion
 
-		//String^ s;
 		Polinom *p;
 		Polinom *q;
-		Polinom *res;
-		int *a1;
-		int *a2;
+
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 this->Text = "Калькулятор";
-				 // label1->Text = "";
+				 this->Text = "Арифметические операции с полиномами";
 				 button1->Text = "EXIT";
 				 p = new Polinom;
 				 q = new Polinom;
-				 res = new Polinom;
-				 // s = Globalization::NumberFormatInfo::CurrentInfo->NumberDecimalSeparator;
 			 }
-	private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e)
-			 {
-
-			 }
-	private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e)
-			 {
-			 }
+	private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e){}
+	private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e){}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 Application::Exit();
+				 delete p;
+				 delete q;
 			 }
-	private: System::Void textBox4_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	private: System::Void textBox4_TextChanged(System::Object^  sender, System::EventArgs^  e){}
 
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 try
 				 {
-					 Single a,b,c,d, s1(0),s2(0),s3(0);
-					 Single A = Single::TryParse(textBox3->Text,
-						 System::Globalization::NumberStyles::Number,
-						 System::Globalization::NumberFormatInfo::CurrentInfo, a);
-					 Single B = Single::TryParse(textBox4->Text,
-						 System::Globalization::NumberStyles::Number,
-						 System::Globalization::NumberFormatInfo::CurrentInfo, b);
-					 Single C = Single::TryParse(textBox5->Text,
-						 System::Globalization::NumberStyles::Number,
-						 System::Globalization::NumberFormatInfo::CurrentInfo, c);
-					 Single D = Single::TryParse(textBox6->Text,
-						 System::Globalization::NumberStyles::Number,
-						 System::Globalization::NumberFormatInfo::CurrentInfo, d);
-					 s1=b; s2=c; s3=d;
+					 double a = Convert::ToDouble(textBox3->Text);
+					 int s1 = Convert::ToInt32(textBox4->Text);
+					 int s2 = Convert::ToInt32(textBox5->Text);
+					 int s3 = Convert::ToInt32(textBox6->Text);
 					 if (s1<0||s2<0||s3<0) throw "Степень < 0 ";
 					 if (s1>19||s2>19||s3>19) throw "Степень >= 20 ";
 					 int N=s1*400+s2*20+s3;
 					 p->AddMonom(a,N);
-					 Monom *t=p->head;
-					 textBox10->Text="";
-					 while (t->GetNext()!=NULL)
-					 {
-						 int x,y,z;
-						 x=t->GetIndex()/400;
-						 y=(t->GetIndex()/20)%20;
-						 z=t->GetIndex()%20;
-						 textBox10->Text += String::Format("{0}", t->GetCoeff());
-						 textBox10->Text += "x^";
-						 textBox10->Text += String::Format("{0}", x);
-						 textBox10->Text += "y^";
-						 textBox10->Text += String::Format("{0}", y);
-						 textBox10->Text += "z^";
-						 textBox10->Text += String::Format("{0}", z);
-						 textBox10->Text += " + ";
-						 t=t->GetNext();
-					 }
-					 if (t->GetCoeff()!=0)
-					 {
-						 textBox10->Text += String::Format("{0}", t->GetCoeff());
-						 textBox10->Text += "x^";
-						 textBox10->Text += String::Format("{0}", t->GetIndex()/400);
-						 textBox10->Text += "y^";
-						 textBox10->Text += String::Format("{0}", (t->GetIndex()/20)%20);
-						 textBox10->Text += "z^";
-						 textBox10->Text += String::Format("{0}", t->GetIndex()%20);
-					 }
+					 string str;
+					 stringstream s;
+					 s<<(*p);
+					 getline(s,str);
+					 textBox10->Text = gcnew String(str.c_str());
 				 }
 				 catch(const char* error)
 				 {
@@ -558,217 +515,73 @@ namespace WinForm
 			 {
 				 try
 				 {
-					 Single a,b,c,d, s1(0),s2(0),s3(0);
-					 Single A = Single::TryParse(textBox7->Text,
-						 System::Globalization::NumberStyles::Number,
-						 System::Globalization::NumberFormatInfo::CurrentInfo, a);
-					 Single B = Single::TryParse(textBox8->Text,
-						 System::Globalization::NumberStyles::Number,
-						 System::Globalization::NumberFormatInfo::CurrentInfo, b);
-					 Single C = Single::TryParse(textBox9->Text,
-						 System::Globalization::NumberStyles::Number,
-						 System::Globalization::NumberFormatInfo::CurrentInfo, c);
-					 Single D = Single::TryParse(textBox11->Text,
-						 System::Globalization::NumberStyles::Number,
-						 System::Globalization::NumberFormatInfo::CurrentInfo, d);
-					 s1=b; s2=c; s3=d;
+					 double a = Convert::ToDouble(textBox7->Text);
+					 int s1 = Convert::ToInt32(textBox8->Text);
+					 int s2 = Convert::ToInt32(textBox9->Text);
+					 int s3 = Convert::ToInt32(textBox11->Text);
 					 if (s1<0||s2<0||s3<0) throw "Степень < 0 ";
 					 if (s1>19||s2>19||s3>19) throw "Степень >= 20 ";
 					 int N=s1*400+s2*20+s3;
 					 q->AddMonom(a,N);
-					 Monom *t=q->head;
-					 textBox12->Text="";
-					 while (t->GetNext()!=NULL)
-					 {
-						 int x,y,z;
-						 x=t->GetIndex()/400;
-						 y=(t->GetIndex()/20)%20;
-						 z=t->GetIndex()%20;
-						 textBox12->Text += String::Format("{0}", t->GetCoeff());
-						 textBox12->Text += "x^";
-						 textBox12->Text += String::Format("{0}", x);
-						 textBox12->Text += "y^";
-						 textBox12->Text += String::Format("{0}", y);
-						 textBox12->Text += "z^";
-						 textBox12->Text += String::Format("{0}", z);
-						 textBox12->Text += " + ";
-						 t=t->GetNext();
-					 }
-					 if (t->GetCoeff()!=0)
-					 {
-						 textBox12->Text += String::Format("{0}", t->GetCoeff());
-						 textBox12->Text += "x^";
-						 textBox12->Text += String::Format("{0}", t->GetIndex()/400);
-						 textBox12->Text += "y^";
-						 textBox12->Text += String::Format("{0}", (t->GetIndex()/20)%20);
-						 textBox12->Text += "z^";
-						 textBox12->Text += String::Format("{0}", t->GetIndex()%20);
-					 }
+					 string str;
+					 stringstream s;
+					 s<<(*q);
+					 getline(s, str);
+					 textBox12->Text = gcnew String(str.c_str());
 				 }
 				 catch(const char* error)
 				 {
 					 textBox12->Text="Неправильный ввод! Степени должны быть в промежутке [0,19]";
 				 }
 			 }
-	private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
-	private: System::Void textBox5_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
-	private: System::Void textBox6_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
-	private: System::Void textBox10_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
-	private: System::Void textBox7_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
-	private: System::Void textBox8_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
-	private: System::Void textBox9_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
-	private: System::Void textBox11_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
-	private: System::Void textBox12_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
-	private: System::Void label9_Click(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e){}
+	private: System::Void textBox5_TextChanged(System::Object^  sender, System::EventArgs^  e){}
+	private: System::Void textBox6_TextChanged(System::Object^  sender, System::EventArgs^  e){}
+	private: System::Void textBox10_TextChanged(System::Object^  sender, System::EventArgs^  e){}
+	private: System::Void textBox7_TextChanged(System::Object^  sender, System::EventArgs^  e){}
+	private: System::Void textBox8_TextChanged(System::Object^  sender, System::EventArgs^  e){}
+	private: System::Void textBox9_TextChanged(System::Object^  sender, System::EventArgs^  e){}
+	private: System::Void textBox11_TextChanged(System::Object^  sender, System::EventArgs^  e){}
+	private: System::Void textBox12_TextChanged(System::Object^  sender, System::EventArgs^  e){}
+	private: System::Void label9_Click(System::Object^  sender, System::EventArgs^  e) {}
 	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 Polinom *p1 = p;
-				 Polinom *p2 = q;
-				 res->Add(p1,p2);
-				 Monom *t=res->head;
-				 textBox13->Text="";
-				 int x,y,z;
-				 while (t->GetNext()!=NULL)
-				 {
-					 x=t->GetIndex()/400;
-					 y=(t->GetIndex()/20)%20;
-					 z=t->GetIndex()%20;
-					 textBox13->Text += String::Format("{0}", t->GetCoeff());
-					 textBox13->Text += "x^";
-					 textBox13->Text += String::Format("{0}", x);
-					 textBox13->Text += "y^";
-					 textBox13->Text += String::Format("{0}", y);
-					 textBox13->Text += "z^";
-					 textBox13->Text += String::Format("{0}", z);
-					 textBox13->Text += " + ";
-					 t=t->GetNext();
-				 }
-				 if (t->GetCoeff()!=0)
-				 {
-					 textBox13->Text += String::Format("{0}", t->GetCoeff());
-					 textBox13->Text += "x^";
-					 textBox13->Text += String::Format("{0}", t->GetIndex()/400);
-					 textBox13->Text += "y^";
-					 textBox13->Text += String::Format("{0}", (t->GetIndex()/20)%20);
-					 textBox13->Text += "z^";
-					 textBox13->Text += String::Format("{0}", t->GetIndex()%20);
-				 }
+				 Polinom res = (*p)+(*q);
+				 string str;
+				 stringstream s;
+				 s<<res;
+				 getline(s, str);
+				 textBox13->Text = gcnew String(str.c_str());
 			 }
-	private: System::Void textBox13_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	private: System::Void textBox13_TextChanged(System::Object^  sender, System::EventArgs^  e){}
 	private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 Polinom *p1 = p;
-				 Polinom *p2 = q;
-				 res->Subtract(p1,p2);
-				 Monom *t=res->head;
-				 textBox13->Text="";
-				 int x,y,z;
-				 while (t->GetNext()!=NULL)
-				 {
-					 x=t->GetIndex()/400;
-					 y=(t->GetIndex()/20)%20;
-					 z=t->GetIndex()%20;
-					 textBox13->Text += String::Format("{0}", t->GetCoeff());
-					 textBox13->Text += "x^";
-					 textBox13->Text += String::Format("{0}", x);
-					 textBox13->Text += "y^";
-					 textBox13->Text += String::Format("{0}", y);
-					 textBox13->Text += "z^";
-					 textBox13->Text += String::Format("{0}", z);
-					 textBox13->Text += " + ";
-					 t=t->GetNext();
-				 }
-				 if (t->GetCoeff()!=0)
-				 {
-					 textBox13->Text += String::Format("{0}", t->GetCoeff());
-					 textBox13->Text += "x^";
-					 textBox13->Text += String::Format("{0}", t->GetIndex()/400);
-					 textBox13->Text += "y^";
-					 textBox13->Text += String::Format("{0}", (t->GetIndex()/20)%20);
-					 textBox13->Text += "z^";
-					 textBox13->Text += String::Format("{0}", t->GetIndex()%20);
-				 }
+				 Polinom res = (*p)-(*q);
+				 string str;
+				 stringstream s;
+				 s<<res;
+				 getline(s, str);
+				 textBox13->Text = gcnew String(str.c_str());
 			 }
 	private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 Polinom *p1 = p;
-				 Polinom *p2 = q;
-				 res->Subtract(p2,p1);
-				 Monom *t=res->head;
-				 textBox13->Text="";
-				 int x,y,z;
-				 while (t->GetNext()!=NULL)
-				 {
-					 x=t->GetIndex()/400;
-					 y=(t->GetIndex()/20)%20;
-					 z=t->GetIndex()%20;
-					 textBox13->Text += String::Format("{0}", t->GetCoeff());
-					 textBox13->Text += "x^";
-					 textBox13->Text += String::Format("{0}", x);
-					 textBox13->Text += "y^";
-					 textBox13->Text += String::Format("{0}", y);
-					 textBox13->Text += "z^";
-					 textBox13->Text += String::Format("{0}", z);
-					 textBox13->Text += " + ";
-					 t=t->GetNext();
-				 }
-				 if (t->GetCoeff()!=0)
-				 {
-					 textBox13->Text += String::Format("{0}", t->GetCoeff());
-					 textBox13->Text += "x^";
-					 textBox13->Text += String::Format("{0}", t->GetIndex()/400);
-					 textBox13->Text += "y^";
-					 textBox13->Text += String::Format("{0}", (t->GetIndex()/20)%20);
-					 textBox13->Text += "z^";
-					 textBox13->Text += String::Format("{0}", t->GetIndex()%20);
-				 }
+				 Polinom res = (*q)-(*p);
+				 string str;
+				 stringstream s;
+				 s<<res;
+				 getline(s, str);
+				 textBox13->Text = gcnew String(str.c_str());
 			 }
 	private: System::Void button8_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 try
 				 {
-					 Polinom *p1 = p;
-					 Polinom *p2 = q;
-					 res->Multiply(p1,p2);
-					 Monom *t=res->head;
-					 textBox13->Text="";
-					 int x,y,z;
-					 while (t->GetNext()!=NULL)
-					 {
-						 x=t->GetIndex()/400;
-						 y=(t->GetIndex()/20)%20;
-						 z=t->GetIndex()%20;
-						 textBox13->Text += String::Format("{0}", t->GetCoeff());
-						 textBox13->Text += "x^";
-						 textBox13->Text += String::Format("{0}", x);
-						 textBox13->Text += "y^";
-						 textBox13->Text += String::Format("{0}", y);
-						 textBox13->Text += "z^";
-						 textBox13->Text += String::Format("{0}", z);
-						 textBox13->Text += " + ";
-						 t=t->GetNext();
-					 }
-					 if (t->GetCoeff()!=0)
-					 {
-						 textBox13->Text += String::Format("{0}", t->GetCoeff());
-						 textBox13->Text += "x^";
-						 textBox13->Text += String::Format("{0}", t->GetIndex()/400);
-						 textBox13->Text += "y^";
-						 textBox13->Text += String::Format("{0}", (t->GetIndex()/20)%20);
-						 textBox13->Text += "z^";
-						 textBox13->Text += String::Format("{0}", t->GetIndex()%20);
-					 }
+					 Polinom res = (*p)*(*q);
+					 string str;
+					 stringstream s;
+					 s<<res;
+					 getline(s, str);
+					 textBox13->Text = gcnew String(str.c_str());
 				 }
 				 catch(const char* error)
 				 {

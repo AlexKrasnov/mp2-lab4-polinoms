@@ -1,4 +1,10 @@
-﻿#include "polinom.h"
+﻿///////////////////////////////////////////////////////////////////////
+// polinom.cpp                                                       //
+// Арифметические операции с полиномами                              //
+// Автор - Краснов А.А., Нижний Новгород, 2016                       //
+///////////////////////////////////////////////////////////////////////
+
+#include "polinom.h"
 
 using namespace std;
 
@@ -66,11 +72,31 @@ void Polinom::AddMonom(double a, int N)
 		}
 		t=t->GetNext();
 	}
-	if (flag==true) t->SetCoeff(a+t->GetCoeff());
-	else 
+	if (flag==false)
 	{
 		Monom *p=new Monom(a,N,head);
 		head=p;
+	}
+	if (flag==true) 
+	{
+		if ((a+t->GetCoeff())!=0) t->SetCoeff(a+t->GetCoeff());
+		else 
+		{
+			Monom *tmp = head;
+			if (t==head)
+			{
+				head = t->next;
+			}
+			else 
+			{
+				while (tmp->next!=t)
+				{
+					tmp=tmp->next;
+				}
+				tmp->next=t->next;
+			}
+			delete t;
+		}
 	}
 	Sort();
 }
@@ -129,50 +155,6 @@ Polinom& Polinom::operator*(const Polinom &p) const
 			else (*res).AddMonom(t1->GetCoeff() * t2->GetCoeff(), t1->GetIndex() + t2->GetIndex());
 		}
 		return *res;
-}
-
-Polinom Polinom::Add(Polinom *p,Polinom *q)
-{
-	Polinom *res = new Polinom(*p);
-	Monom *t=q->head;
-	while (t!=NULL)
-	{
-		(*res).AddMonom(t->GetCoeff(),t->GetIndex());
-		t=t->GetNext();
-	}
-	*this=*res;
-	return *this;
-}
-
-Polinom Polinom::Subtract(Polinom *p,Polinom *q)
-{
-	Polinom *res = new Polinom(*p);
-	Monom *t=q->head;
-	while (t!=NULL)
-	{
-		(*res).AddMonom(-t->GetCoeff(),t->GetIndex());
-		t=t->GetNext();
-	}
-	*this=*res;
-	return *this;
-}
-
-Polinom Polinom::Multiply(Polinom *p,Polinom *q)
-{
-	Polinom *res = new Polinom;
-	for (Monom *t1=q->head;t1!=NULL;t1=t1->GetNext())
-		for (Monom *t2=p->head;t2!=NULL;t2=t2->GetNext())
-		{
-			int s1(0),s2(0),s3(0);
-			s1=(t1->GetIndex())%20 + (t2->GetIndex())%20;
-			s2=((t1->GetIndex())/20)%20 + ((t2->GetIndex())/20)%20;
-			s3=(t1->GetIndex())/400 + (t2->GetIndex())/400;
-			if (s1>19||s2>19||s3>19)
-				throw ("Одна из степеней итогового полинома >= 20");
-			else (*res).AddMonom(t1->GetCoeff() * t2->GetCoeff(), t1->GetIndex() + t2->GetIndex());
-		}
-		*this = *res;
-		return *this;
 }
 
 Polinom& Polinom:: operator=(const Polinom &p)

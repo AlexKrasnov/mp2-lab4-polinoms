@@ -232,15 +232,23 @@ TEST(Polinoms, can_substract_polinoms_with_not_equal_index)
 	EXPECT_EQ(res,p-q);
 }
 
-TEST(Polinoms, can_multiply_polinoms)
+TEST(Polinoms, can_multiply_polinoms_with_equal_index)
 {
-	Polinom p,res;
+	Polinom p,q,res;
 	p.AddMonom(5,421);
-	Polinom q(p);
-	q.AddMonom(10,842);
+	q.AddMonom(15,421);
 	q=q*p;
-	res.AddMonom(25,842);
-	res.AddMonom(50,1263);
+	res.AddMonom(75,842);
+	EXPECT_EQ(q,res);
+}
+
+TEST(Polinoms, can_multiply_polinoms_with_not_equal_index)
+{
+	Polinom p,q,res;
+	p.AddMonom(5,842);
+	q.AddMonom(15,421);
+	q=q*p;
+	res.AddMonom(75,1263);
 	EXPECT_EQ(q,res);
 }
 
@@ -252,42 +260,20 @@ TEST(Polinoms, throws_when_multiply_polinoms_with_large_powers)
 	ASSERT_ANY_THROW(p*q);
 }
 
-TEST(Polinoms, can_add)
+TEST(Polinoms, output_without_nulls)
 {
-	Polinom *p = new Polinom;
-	Polinom *q = new Polinom;
-	p->AddMonom(5.0,666);
-	q->AddMonom(1.0,444);
-	Polinom *z = new Polinom;
-	z->Add(p,q);
-	Polinom *res = new Polinom;
-	res->AddMonom(5.0,666);
-	res->AddMonom(1.0,444);
-	EXPECT_EQ(*res,*z);
+	Polinom p;
+	p.AddMonom(2,0);
+	p.AddMonom(-2,0);
+	EXPECT_EQ(true,p.head==NULL);
 }
 
-TEST(Polinoms, can_subtruct)
+TEST(Polinoms, output_without_nulls_2)
 {
-	Polinom *p = new Polinom;
-	Polinom *q = new Polinom;
-	p->AddMonom(5.0,666);
-	q->AddMonom(1.0,444);
-	Polinom *z = new Polinom;
-	z->Subtract(p,q);
-	Polinom *res = new Polinom;
-	res->AddMonom(5.0,666);
-	res->AddMonom(-1.0,444);
-	EXPECT_EQ(*res,*z);
-}
-
-TEST(Polinoms, can_multiply)
-{
-	Polinom *p = new Polinom;
-	Polinom *res = new Polinom;
-	p->AddMonom(5,421);
-	Polinom *q=new Polinom;
-	q->AddMonom(10,842);
-	q->Multiply(q,p);
-	res->AddMonom(50,1263);
-	EXPECT_EQ(*q,*res);
+	Polinom p,q;
+	p.AddMonom(2,0);
+	p.AddMonom(5,421);
+	p.AddMonom(-2,0);
+	q.AddMonom(5,421);
+	EXPECT_EQ(p,q);
 }

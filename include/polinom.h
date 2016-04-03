@@ -1,6 +1,12 @@
-﻿#pragma once
+﻿///////////////////////////////////////////////////////////////////////
+// polinom.h                                                         //
+// Арифметические операции с полиномами                              //
+// Автор - Краснов А.А., Нижний Новгород, 2016                       //
+///////////////////////////////////////////////////////////////////////
+
+#pragma once
 #include "monom.h"
-#include<locale>
+#include <locale>
 
 using namespace std;
 
@@ -21,9 +27,6 @@ public:
 	Polinom& operator=(const Polinom &p);
 	bool operator==(const Polinom &p) const;
 	Monom* GetHead();
-	Polinom Add(Polinom *p,Polinom *q);
-	Polinom Subtract(Polinom *p,Polinom *q);
-	Polinom Multiply(Polinom *p,Polinom *q);
 	friend istream& operator>>(istream &in, Polinom &p)
 	{
 		double k;
@@ -50,7 +53,7 @@ public:
 		}
 		return in;
 	}
-	friend ostream & operator<<(ostream &out, const Polinom &p)
+	friend ostream& operator<<(ostream &out, const Polinom &p)
 	{
 		Polinom q(p);
 		q.Sort();

@@ -12,13 +12,12 @@ using namespace std;
 
 class Polinom : public Monom
 {
-public:
 	Monom *head;
+public:
 	Polinom();
 	~Polinom();
 	Polinom(const Polinom &p);
 	void Clean();
-	void Sort();
 	void AddMonom(double a, int N); 
 	Polinom& operator*(double a) const;
 	Polinom& operator+(const Polinom &p) const;
@@ -56,7 +55,6 @@ public:
 	friend ostream& operator<<(ostream &out, const Polinom &p)
 	{
 		Polinom q(p);
-		q.Sort();
 		Monom *t = q.head;
 		if (t==NULL)
 		{

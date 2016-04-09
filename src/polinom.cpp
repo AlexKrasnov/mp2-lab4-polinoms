@@ -15,7 +15,7 @@ Polinom::Polinom()
 
 Polinom::~Polinom()
 {
-	//Clean();
+	Clean();
 }
 
 Polinom:: Polinom(const Polinom &p)
@@ -47,58 +47,54 @@ void Polinom::Clean()
 	}
 }
 
-void Polinom:: Sort()
-{
-	for (Monom *i=head;i!=NULL;i=i->GetNext())
-		for (Monom *j=i;j!=NULL;j=j->GetNext())
-			if (j->GetIndex()>=i->GetIndex()) 
-			{
-				swap(i->index,j->index);
-				swap(i->coeff,j->coeff);
-			}
-}
-
 void Polinom::AddMonom(double a, int N)
 {
-	bool flag = false;
 	if (a==0) return;
-	Monom *t=head;
-	while (t!=NULL)
+	if (head == NULL) head = new Monom(a,N,NULL); 
+	else
 	{
-		if (t->GetIndex()==N)
+		if (head->GetIndex() < N)
 		{
-			flag = true;
-			break;
+			Monom *tmp = new Monom(a,N,NULL);
+			tmp->SetNext(head);
+			head = tmp; 
 		}
-		t=t->GetNext();
-	}
-	if (flag==false)
-	{
-		Monom *p=new Monom(a,N,head);
-		head=p;
-	}
-	if (flag==true) 
-	{
-		if ((a+t->GetCoeff())!=0) t->SetCoeff(a+t->GetCoeff());
-		else 
+		else
 		{
-			Monom *tmp = head;
-			if (t==head)
+			Monom *cur, *last;
+			for (cur=head;cur!=NULL;cur=cur->GetNext())
 			{
-				head = t->next;
-			}
-			else 
-			{
-				while (tmp->next!=t)
+				if (cur->GetIndex() < N) break;
+				if (cur->GetIndex() == N)
 				{
-					tmp=tmp->next;
+					if ((a+cur->GetCoeff())!=0) cur->SetCoeff(a+cur->GetCoeff());
+					else 
+					{
+						Monom *tmp = head;
+						if (cur==head) head = cur->GetNext();
+						else 
+						{
+							while (tmp->GetNext()!=cur) tmp=tmp->GetNext();
+							tmp->SetNext(cur->GetNext());
+						}
+						delete cur;
+					}
+					return;
 				}
-				tmp->next=t->next;
+				last = cur; 
 			}
-			delete t;
+			if (cur != NULL)
+			{
+				Monom *p = new Monom(a,N,cur);
+				last->SetNext(p); 
+			}
+			else
+			{
+				Monom *p = new Monom(a,N,NULL);
+				last->SetNext(p);
+			}
 		}
 	}
-	Sort();
 }
 
 Polinom& Polinom:: operator*(double a) const

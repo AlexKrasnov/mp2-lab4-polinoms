@@ -508,7 +508,7 @@ namespace WinForm
 				 }
 				 catch(const char* error)
 				 {
-					 textBox10->Text="Неправильный ввод! Степени должны быть в промежутке [0,19]";
+					 textBox10->Text=gcnew String(error);
 				 }
 			 }
 	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) 
@@ -531,7 +531,7 @@ namespace WinForm
 				 }
 				 catch(const char* error)
 				 {
-					 textBox12->Text="Неправильный ввод! Степени должны быть в промежутке [0,19]";
+					 textBox12->Text=gcnew String(error);
 				 }
 			 }
 	private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e){}
@@ -585,7 +585,7 @@ namespace WinForm
 				 }
 				 catch(const char* error)
 				 {
-					 textBox13->Text="Степень итогового многочлена >= 20";
+					 textBox13->Text=gcnew String(error);
 				 }
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) 

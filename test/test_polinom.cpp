@@ -10,7 +10,7 @@ TEST(Polinoms, can_create_polinom)
 TEST(Polinoms, created_list_is_empty)
 {
 	Polinom p;
-	EXPECT_EQ(NULL, p.head);
+	EXPECT_EQ(NULL, p.GetHead());
 }
 
 TEST(Polinoms, can_create_copied_polinom)
@@ -30,9 +30,10 @@ TEST(Polinoms, copied_polinom_is_equal_to_source_one)
 
 TEST(Polinoms, can_assign_polinom)
 {
-	Polinom p,q;
-	p.AddMonom(5.0,125);
-	q.AddMonom(7.7,343);
+	Polinom *p = new Polinom;
+	Polinom *q = new Polinom;
+	p->AddMonom(5.0,125);
+	q->AddMonom(7.7,343);
 	ASSERT_NO_THROW(q=p);
 	EXPECT_EQ(p,q);
 }
@@ -46,13 +47,14 @@ TEST(Polinoms, can_assign_polinom_to_itself)
 
 TEST(Polinoms, compare_equal_polinoms_return_true)
 {
-	Polinom p,q;
+	Polinom *p = new Polinom;
+	Polinom *q = new Polinom;
 	for (int i(0);i<3;i++)
 	{
-		p.AddMonom(i,i*100);
-		q.AddMonom(i,i*100);
+		p->AddMonom(i,i*100);
+		q->AddMonom(i,i*100);
 	}
-	EXPECT_EQ(true,p==q);
+	EXPECT_EQ(true,(*p)==(*q));
 }
 
 TEST(Polinoms, compare_polinom_with_itself_return_true)
@@ -112,9 +114,14 @@ TEST(Polinoms, throws_when_enter_polinom_with_too_large_power)
 TEST(Polinoms, can_get_head)
 {
 	Polinom p1;
-	Monom *m = new Monom;
-	p1.head=m;
+	Monom *m = NULL;
 	EXPECT_EQ(m,p1.GetHead());
+	Monom *n = new Monom;
+	n->SetCoeff(5);
+	n->SetIndex(400);
+	p1.AddMonom(5,400);
+	EXPECT_EQ(n->GetCoeff(),p1.GetHead()->GetCoeff());
+	EXPECT_EQ(n->GetIndex(),p1.GetHead()->GetIndex());
 }
 
 TEST(Polinoms, can_clean_polinom)
@@ -124,7 +131,7 @@ TEST(Polinoms, can_clean_polinom)
 	p.AddMonom(1.0,999);
 	p.AddMonom(1.0,125);
 	p.Clean();
-	EXPECT_EQ(true,p.head==NULL);
+	EXPECT_EQ(true,p.GetHead()==NULL);
 }
 
 TEST(Polinoms, can_sort_polinom)
@@ -137,7 +144,6 @@ TEST(Polinoms, can_sort_polinom)
 	q.AddMonom(1.0,125);
 	q.AddMonom(1.0,333);
 	q.AddMonom(1.0,999);
-	p.Sort();
 	EXPECT_EQ(p,q);
 }
 
@@ -165,7 +171,7 @@ TEST(Polinoms, not_add_monoms_with_coeff_0)
 {
 	Polinom p;
 	p.AddMonom(0.0,125);
-	EXPECT_EQ(true,p.head==NULL);
+	EXPECT_EQ(true,p.GetHead()==NULL);
 }
 
 TEST(Polinoms, can_multiply_monom_on_const)
@@ -186,8 +192,8 @@ TEST(Polinoms, can_multiply_polinom_on_null)
 	p.AddMonom(5.0,125);
 	p.AddMonom(2.0,545);
 	Polinom q=p*0;
-	EXPECT_EQ(true,q.head->next==NULL);
-	EXPECT_EQ(q.head->GetCoeff(),0);
+	EXPECT_EQ(true,q.GetHead()->GetNext()==NULL);
+	EXPECT_EQ(q.GetHead()->GetCoeff(),0);
 }
 
 TEST(Polinoms, can_add_polinoms_with_equal_index)
@@ -265,7 +271,7 @@ TEST(Polinoms, output_without_nulls)
 	Polinom p;
 	p.AddMonom(2,0);
 	p.AddMonom(-2,0);
-	EXPECT_EQ(true,p.head==NULL);
+	EXPECT_EQ(true,p.GetHead()==NULL);
 }
 
 TEST(Polinoms, output_without_nulls_2)

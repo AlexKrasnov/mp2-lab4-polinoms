@@ -9,11 +9,11 @@
 
 class Monom
 {
-public:
 	double coeff;
-	int index;
+    int index;
 	Monom *next;
-    Monom(double = 0.0,int N = 0, Monom *_next = NULL);
+public:
+    Monom(double = 0.0, int = 0, Monom* = NULL);
 	Monom(const Monom &m);
 	void SetCoeff(double a);
     double GetCoeff();

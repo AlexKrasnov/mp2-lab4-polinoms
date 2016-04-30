@@ -8,8 +8,6 @@
 #include "monom.h"
 #include <locale>
 
-using namespace std;
-
 class Polinom : public Monom
 {
 	Monom *head;
@@ -54,42 +52,22 @@ public:
 	}
 	friend ostream& operator<<(ostream &out, const Polinom &p)
 	{
-		Polinom q(p);
-		Monom *t = q.head;
-		if (t==NULL)
+		Polinom *q = new Polinom(p);
+		Monom *t = q->head;
+		if (q->head==NULL) 
 		{
-			out<<t->GetCoeff();
+			out<<0;
 			return out;
 		}
-		if (t->GetNext()==NULL)
+		if (t->GetCoeff()>0) out<<*t;
+		else out<<"-"<<*t;
+		t=t->GetNext();
+		while (t!=NULL)
 		{
-			if (t->GetCoeff()==0)
-			{
-				out<<t->GetCoeff();
-				return out;
-			}
-			else if (t->GetIndex()==0) out<<t->GetCoeff();
-			else out<<t->GetCoeff()<<"x^"<<t->GetIndex()/400<<"y^"<<(t->GetIndex()/20)%20<<"z^"<<t->GetIndex()%20<<endl;
-			return out;
+			if (t->GetCoeff()>0) out<<" + "<<*t;
+			else out<<" - "<<*t;
+			t=t->GetNext();
 		}
-		while (t->GetNext()!=NULL)
-		{
-			if (t->GetCoeff()==0.0) t=t->GetNext();
-			else if (t->GetIndex()==0) 
-			{
-				out<<t->GetCoeff();
-				t=t->GetNext();
-			}
-			else
-			{
-				out<<t->GetCoeff()<<"x^"<<t->GetIndex()/400<<"y^"<<(t->GetIndex()/20)%20<<"z^"<<t->GetIndex()%20;
-				t=t->GetNext();
-			}
-			if (t->GetNext()!=NULL) out<<" + ";
-		}
-		if (t->GetCoeff()==0) return out;
-		else if (t->GetIndex()==0) out<<" + "<<t->GetCoeff();
-		else out<<" + "<<t->GetCoeff()<<"x^"<<t->GetIndex()/400<<"y^"<<(t->GetIndex()/20)%20<<"z^"<<t->GetIndex()%20<<endl;
 		return out;
 	}
 };

@@ -191,9 +191,14 @@ TEST(Polinoms, can_multiply_polinom_on_null)
 	Polinom p;
 	p.AddMonom(5.0,125);
 	p.AddMonom(2.0,545);
-	Polinom q=p*0;
-	EXPECT_EQ(true,q.GetHead()->GetNext()==NULL);
-	EXPECT_EQ(q.GetHead()->GetCoeff(),0);
+	Polinom res = p*0;
+	Polinom q;
+	EXPECT_EQ(res,q);
+	stringstream s;
+	s << q;
+	string str;
+	getline(s, str);
+	EXPECT_EQ(string("0\0"), str);
 }
 
 TEST(Polinoms, can_add_polinoms_with_equal_index)

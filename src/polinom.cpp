@@ -20,8 +20,7 @@ Polinom::~Polinom()
 
 Polinom:: Polinom(const Polinom &p)
 {
-	head = new Monom; 
-	head->SetNext(NULL);
+	head = NULL;
 	Monom *cur = new Monom;
 	cur = p.head;
 	while (cur!=NULL)

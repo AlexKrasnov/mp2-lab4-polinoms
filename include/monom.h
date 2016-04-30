@@ -7,6 +7,8 @@
 #pragma once
 #include <iostream>
 
+using namespace std;
+
 class Monom
 {
 	double coeff;
@@ -23,4 +25,10 @@ public:
 	Monom* GetNext();
 	Monom& operator=(const Monom &m);
 	bool operator==(const Monom &m) const;
+	friend ostream& operator<<(ostream &out, const Monom &m)
+	{
+		Monom *n = new Monom(m);
+		out<<abs(n->GetCoeff())<<"x^"<<n->GetIndex()/400<<"y^"<<(n->GetIndex()/20)%20<<"z^"<<n->GetIndex()%20;
+		return out;
+	}
 };

@@ -8,7 +8,7 @@
 #include "monom.h"
 #include <locale>
 
-class Polinom : public Monom
+class Polinom
 {
 	Monom *head;
 public:
